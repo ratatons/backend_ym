@@ -20,7 +20,7 @@ dotenv.config();
 const app = express();
 
 // Health check endpoint (before all middleware to avoid rate limiting)
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: 'Backend healthy',

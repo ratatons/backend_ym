@@ -3,7 +3,7 @@ import { AuthRequest } from '../middleware/auth';
 import { JokeService } from '../services/JokeService';
 
 export class JokeController {
-  static async getRandomJoke(req: AuthRequest, res: Response): Promise<void> {
+  static async getRandomJoke(_req: AuthRequest, res: Response): Promise<void> {
     try {
       const joke = await JokeService.getRandomJoke();
 
