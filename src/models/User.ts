@@ -18,6 +18,7 @@ const userSchema = new Schema<IUser>(
       trim: true,
       minlength: 3,
       maxlength: 30,
+      index: true,
     },
     email: {
       type: String,
@@ -26,6 +27,7 @@ const userSchema = new Schema<IUser>(
       trim: true,
       lowercase: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      index: true,
     },
     passwordHash: {
       type: String,
@@ -40,9 +42,5 @@ const userSchema = new Schema<IUser>(
     timestamps: true,
   }
 );
-
-// Index for efficient querying
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
 
 export const User = mongoose.model<IUser>('User', userSchema);
