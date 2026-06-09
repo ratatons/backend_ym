@@ -80,7 +80,7 @@ export class MessageController {
       const skip = (page - 1) * limit;
 
       const messages = await Message.find({ receiverId: req.userId })
-        .populate('senderId', '-passwordHash')
+        .populate('senderId', 'username email _id expoPushToken')
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
@@ -123,7 +123,7 @@ export class MessageController {
       const skip = (page - 1) * limit;
 
       const messages = await Message.find({ senderId: req.userId })
-        .populate('receiverId', '-passwordHash')
+        .populate('receiverId', 'username email _id expoPushToken')
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });

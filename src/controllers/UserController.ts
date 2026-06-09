@@ -50,7 +50,7 @@ export class UserController {
           { email: { $regex: query, $options: 'i' } },
         ],
       })
-        .select('-passwordHash')
+        .select('username email _id expoPushToken createdAt updatedAt')
         .limit(20)
         .sort({ username: 1 });
 
