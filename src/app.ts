@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
 import { connectDatabase } from './config/database';
@@ -51,15 +50,6 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Request logger
 app.use(requestLogger);
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.',
-});
-
-app.use('/api/', limiter);
 
 // API Routes
 app.use('/api/auth', authRoutes);
